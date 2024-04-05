@@ -1,0 +1,25 @@
+filenames = ['file1', 'file2', 'file3']
+dict_filename = {}
+for fname in filenames:
+    with open(fname, 'r', encoding='utf-8') as f:
+        line = []
+        line += [len(f.readlines())]
+        dict_filename[fname] = line
+
+sort = sorted(dict_filename.items(), key=lambda i: i[1])
+
+new_file = ''
+for fname, i in sort:
+    with open(fname, 'r', encoding='utf-8') as f:
+        new_file += f'{fname} \n'
+        qu = i[0]
+        new_file += f'{qu} \n'
+        for line in f:
+            new_file += f'{line.strip()} \n'
+
+new_file_go = open('new_file_go', 'w', encoding='utf-8')
+new_file_go.write(new_file)
+new_file_go.close()
+
+
+ 
